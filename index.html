@@ -1,637 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Calculator Tools</title>
+    <meta name="description" content="Online financial calculator tools including CD Calculator, helping you make better financial decisions">
+    <meta name="keywords" content="CD calculator, financial tools, calculator online, interest calculator">
+    <title>Financial Calculator Tools - CD Calculator and More</title>
+    <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-bg: #f8f9fa;
-            --dark-bg: #2c3e50;
-            --text-color: #333;
-            --light-text: #fff;
-            --border-radius: 8px;
-            --box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: var(--light-bg);
-            color: var(--text-color);
-        }
-
-        /* Header Styles */
-        .header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--box-shadow);
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo img {
-            height: 40px;
-            filter: brightness(0) invert(1);
-        }
-
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--light-text);
-        }
-
-        /* Navigation Styles */
-        .nav {
-            margin-left: auto;
-        }
-
-        .nav-list {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        .nav-item a {
-            text-decoration: none;
-            color: var(--light-text);
-            padding: 8px 15px;
-            border-radius: var(--border-radius);
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .nav-item a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, #2980b9, #2c3e50);
-            padding: 120px 0 60px;
-            color: var(--light-text);
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .hero-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        /* Main Container */
-        .main-container {
-            display: flex;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            gap: 30px;
-        }
-
-        /* Left Content Area */
-        .content-left {
-            width: 80%;
-            background: var(--light-text);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 20px;
-        }
-
-        .calculator-section {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 30px;
-            background: var(--light-bg);
-            padding: 20px;
-            border-radius: var(--border-radius);
-        }
-
-        .calculator-frame {
-            flex: 2;
-            background: var(--light-text);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            overflow: hidden;
-        }
-
-        .calculator-desc {
-            flex: 1;
-            background: var(--light-text);
-            padding: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-
-        .calculator-desc h2 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .calculator-desc ul {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .calculator-desc ul li {
-            padding: 8px 0;
-            position: relative;
-            padding-left: 25px;
-        }
-
-        .calculator-desc ul li:before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--secondary-color);
-        }
-
-        /* Tabs Section */
-        .tabs {
-            background: var(--light-text);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            margin-top: 30px;
-        }
-
-        .tab-headers {
-            display: flex;
-            background: var(--light-bg);
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
-            overflow: hidden;
-        }
-
-        .tab-header {
-            padding: 15px 25px;
-            cursor: pointer;
-            border: none;
-            background: none;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            color: var(--text-color);
-            font-weight: 500;
-        }
-
-        .tab-header:hover {
-            background: rgba(52, 152, 219, 0.1);
-        }
-
-        .tab-header.active {
-            background: var(--secondary-color);
-            color: var(--light-text);
-        }
-
-        .tab-content {
-            padding: 25px;
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 20%;
-        }
-
-        .sidebar-widget {
-            background: var(--light-text);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: var(--box-shadow);
-        }
-
-        .sidebar-widget h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .sidebar-widget ul {
-            list-style: none;
-        }
-
-        .sidebar-widget ul li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .sidebar-widget ul li:hover {
-            color: var(--secondary-color);
-            padding-left: 10px;
-        }
-
-        /* 继续下一部分... */
-        /* 继续 Sidebar 样式 */
-        .sidebar-widget ul li:hover {
-            padding-left: 10px;
-            color: var(--secondary-color);
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            background: linear-gradient(135deg, #f6f8fa, #e9ecef);
-            padding: 60px 0;
-            margin: 40px 0;
-        }
-
-        .faq-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .faq-container h2 {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 40px;
-            font-size: 2rem;
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .faq-item {
-            background: var(--light-text);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .faq-question {
-            padding: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--light-text);
-            color: var(--primary-color);
-            border-bottom: 1px solid #eee;
-        }
-
-        .faq-answer {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            background: var(--light-bg);
-        }
-
-        .faq-answer.active {
-            padding: 20px;
-            max-height: 500px;
-        }
-
-        .toggle {
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 60px 0;
-            background: var(--light-text);
-        }
-
-        .features-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .feature-card {
-            text-align: center;
-            padding: 30px;
-            background: var(--light-bg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark-bg);
-            color: var(--light-text);
-            padding: 60px 0 30px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-
-        .footer-section h4 {
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-section ul li a {
-            color: var(--light-text);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section ul li a:hover {
-            color: var(--secondary-color);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .main-container {
-                flex-direction: column;
-            }
-
-            .content-left,
-            .sidebar {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .calculator-section {
-                flex-direction: column;
-            }
-
-            .nav-list {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--primary-color);
-                padding: 20px;
-            }
-
-            .nav-list.active {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-                color: var(--light-text);
-                font-size: 1.5rem;
-                cursor: pointer;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- 导航栏 -->
     <header class="header">
-        <div class="header-content">
+        <div class="container">
             <div class="logo">
-                <img src="calculator-logo.png" alt="Calculator Logo">
-                <span class="logo-text">CalcPro</span>
+                <img src="images/logo.png" alt="Calculator Tools Logo">
+                <span>Calculator Tools</span>
             </div>
-            <nav class="nav">
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="#home">Home</a></li>
-                    <li class="nav-item"><a href="#calculators">Calculators</a></li>
-                    <li class="nav-item"><a href="#about">About</a></li>
-                    <li class="nav-item"><a href="#contact">Contact</a></li>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#calculators">Calculators</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>Professional Financial Calculators</h1>
-            <p>Make informed financial decisions with our suite of powerful calculation tools</p>
-        </div>
-    </section>
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- 左侧主要内容区 -->
+                <div class="content-main">
+                    <!-- 计算器区域 -->
+                    <section class="calculator-section">
+                        <h1>CD Calculator</h1>
+                        <div class="calculator-container">
+                            <iframe src="https://cdcalculator-co.vercel.app/cd-calculator.html" 
+                                    title="CD Calculator"
+                                    frameborder="0"
+                                    loading="lazy">
+                            </iframe>
+                        </div>
+                        
+                        <!-- 使用说明 -->
+                        <div class="usage-guide">
+                            <h2>How to Use CD Calculator</h2>
+                            <p>Follow these simple steps to calculate your CD earnings:</p>
+                            <ol>
+                                <li>Enter your initial deposit amount</li>
+                                <li>Select your CD term length</li>
+                                <li>Input the annual percentage yield (APY)</li>
+                                <li>Choose your compound frequency</li>
+                                <li>Click calculate to see your results</li>
+                            </ol>
+                        </div>
+                    </section>
 
-    <!-- Main Content -->
-    <div class="main-container">
-        <div class="content-left">
-            <div class="calculator-section">
-                <div class="calculator-frame">
-                    <!-- Calculator content goes here -->
-                    <div style="padding: 20px;">
-                        <h2>CD Calculator</h2>
-                        <!-- Add calculator form elements here -->
+                    <!-- 功能介绍 -->
+                    <section class="features-section">
+                        <h2>Key Features</h2>
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <i class="fas fa-calculator"></i>
+                                <h3>Accurate Calculations</h3>
+                                <p>Precise interest calculations based on current market rates</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-clock"></i>
+                                <h3>Real-time Updates</h3>
+                                <p>Instant results as you adjust your inputs</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Visual Reports</h3>
+                                <p>Clear graphical representation of your earnings</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-sync"></i>
+                                <h3>Compare Options</h3>
+                                <p>Easy comparison of different CD terms</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-mobile-alt"></i>
+                                <h3>Mobile Friendly</h3>
+                                <p>Use on any device, anywhere</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-download"></i>
+                                <h3>Save Results</h3>
+                                <p>Export calculations for future reference</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 工作原理 -->
+                    <section class="how-it-works">
+                        <h2>How It Works</h2>
+                        <div class="principles-grid">
+                            <div class="principle-card">
+                                <h3>Compound Interest Calculation</h3>
+                                <p>Uses the standard compound interest formula: A = P(1 + r/n)^(nt)</p>
+                            </div>
+                            <div class="principle-card">
+                                <h3>APY Integration</h3>
+                                <p>Incorporates current Annual Percentage Yield rates for accurate projections</p>
+                            </div>
+                            <div class="principle-card">
+                                <h3>Time Value Analysis</h3>
+                                <p>Considers the time value of money for long-term investments</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- FAQ部分 -->
+                    <section class="faq-section">
+                        <h2>Frequently Asked Questions</h2>
+                        <div class="faq-container">
+                            <div class="faq-item">
+                                <h3>What is a CD (Certificate of Deposit)?</h3>
+                                <p>A CD is a time deposit that typically offers a higher interest rate than a regular savings account in exchange for leaving your money untouched for a fixed period.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>How is CD interest calculated?</h3>
+                                <p>CD interest is typically calculated using compound interest, which means you earn interest on your interest as well as your principal.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3>What happens if I withdraw early?</h3>
+                                <p>Early withdrawal usually results in penalties that can reduce your earnings. The specific penalty depends on your bank and CD terms.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 右侧广告区 -->
+                <aside class="sidebar">
+                    <div class="ad-space">
+                        <div class="ad-placeholder">
+                            <p>Advertisement Space</p>
+                        </div>
                     </div>
-                </div>
-                <div class="calculator-desc">
-                    <h2>How to Use</h2>
-                    <ul>
-                        <li>Enter your initial deposit amount</li>
-                        <li>Select your CD term length</li>
-                        <li>Input the interest rate</li>
-                        <li>Choose compound frequency</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Tabs Section -->
-            <div class="tabs">
-                <div class="tab-headers">
-                    <button class="tab-header active">Overview</button>
-                    <button class="tab-header">Details</button>
-                    <button class="tab-header">Examples</button>
-                </div>
-                <div class="tab-content active">
-                    <h3>CD Calculator Overview</h3>
-                    <p>Our CD calculator helps you determine potential earnings from your Certificate of Deposit investment.</p>
-                </div>
-                <!-- Add more tab contents -->
+                </aside>
             </div>
         </div>
+    </main>
 
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-widget">
-                <h3>Popular Tools</h3>
-                <ul>
-                    <li>Mortgage Calculator</li>
-                    <li>Loan Calculator</li>
-                    <li>Investment Calculator</li>
-                    <li>Retirement Calculator</li>
-                </ul>
-            </div>
-        </aside>
-    </div>
-
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="features-container">
-            <h2>Why Choose Our Calculators</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-calculator feature-icon"></i>
-                    <h3>Accurate Results</h3>
-                    <p>Precise calculations you can trust</p>
-                </div>
-                <!-- Add more feature cards -->
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="faq-container">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        What is a CD Calculator?
-                        <span class="toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        A CD Calculator helps you determine potential earnings from your Certificate of Deposit investment.
-                    </div>
-                </div>
-                <!-- Add more FAQ items -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- 页脚 -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#calculators">Calculators</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <!-- Add more footer sections -->
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 CalcPro. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2025 Calculator Tools. All rights reserved.</p>
         </div>
     </footer>
 
-    <script>
-        // FAQ Toggle
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const toggle = question.querySelector('.toggle');
-                
-                answer.classList.toggle('active');
-                toggle.textContent = answer.classList.contains('active') ? '-' : '+';
-            });
-        });
-
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
-            document.querySelector('.nav-list').classList.toggle('active');
-        });
-
-        // Tab Switching
-        document.querySelectorAll('.tab-header').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.tab-header').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                tab.classList.add('active');
-                const index = Array.from(tab.parentElement.children).indexOf(tab);
-                document.querySelectorAll('.tab-content')[index].classList.add('active');
-            });
-        });
-    </script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
