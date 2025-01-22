@@ -295,6 +295,137 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
+/* Popular Calculators 样式 */
+.popular-calculators {
+    margin: 40px 0;
+    padding: 30px;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.popular-calculators h2 {
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.calculators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.calculator-category {
+    background: var(--background-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    transition: transform 0.3s ease;
+}
+
+.calculator-category:hover {
+    transform: translateY(-5px);
+}
+
+.calculator-category h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.calculator-category h3 i {
+    color: var(--secondary-color);
+}
+
+.calculator-list {
+    list-style: none;
+}
+
+.calculator-list li {
+    margin-bottom: 10px;
+}
+
+.calculator-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--text-color);
+    background: white;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+}
+
+.calculator-list a:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateX(5px);
+}
+
+.calculator-list a i {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.calculator-list a:hover i {
+    opacity: 1;
+}
+
+.calc-name {
+    flex: 1;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .calculators-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .calculator-category {
+        margin-bottom: 20px;
+    }
+}
+
+/* 添加动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calculator-category {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.calculator-category:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.calculator-category:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.calculator-category:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.calculator-category:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.calculator-category:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+
 /* 响应式设计 */
 @media (max-width: 768px) {
     .content-wrapper {
